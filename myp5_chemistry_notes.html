@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MYP 5 Chemistry Notes</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,serif;background:#faf9f7;color:#1a1a18;font-size:15px;line-height:1.7}
+.shell{display:flex;min-height:100vh}
+.sidebar{width:240px;flex-shrink:0;background:#1a1a18;color:#e8e6e0;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:100}
+.logo{padding:20px 16px 14px;border-bottom:1px solid #333}
+.logo h1{font-size:14px;font-weight:400;letter-spacing:0.06em;color:#c8c4b8;text-transform:uppercase}
+.logo p{font-size:11px;color:#666;margin-top:3px}
+.nav-u{padding:12px 16px 4px;font-size:10px;color:#555;letter-spacing:0.1em;text-transform:uppercase}
+.nav-i{display:flex;align-items:center;gap:8px;padding:7px 16px;cursor:pointer;font-size:12px;color:#aaa;transition:color 0.15s}
+.nav-i:hover{color:#e8e6e0}
+.nav-i.on{color:#e8e6e0;font-weight:600}
+.nav-i .dot{width:5px;height:5px;border-radius:50%;background:#444;flex-shrink:0;transition:background 0.15s}
+.nav-i.on .dot{background:#c9a84c}
+.cleg{padding:16px;margin:12px 8px;border:1px solid #2a2a28;border-radius:8px;font-size:11px}
+.cleg p{color:#555;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;font-size:10px}
+.cl{display:flex;align-items:center;gap:7px;margin-bottom:5px;color:#999}
+.clb{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.main{margin-left:240px;padding:40px 48px;max-width:860px}
+.unit{display:none}
+.unit.on{display:block}
+.utag{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#c9a84c;margin-bottom:8px}
+.utitle{font-size:28px;font-weight:400;color:#1a1a18;margin-bottom:6px;font-style:italic}
+.udesc{font-size:14px;color:#777;margin-bottom:32px;border-bottom:1px solid #e8e5df;padding-bottom:16px}
+.section{margin-bottom:28px;border:1px solid #e8e5df;border-radius:10px;overflow:hidden}
+.shead{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;background:#fdfcfa}
+.shead:hover{background:#f5f3ef}
+.stitle{font-size:15px;font-weight:600;color:#1a1a18}
+.sarrow{font-size:12px;color:#aaa;transition:transform 0.2s}
+.sarrow.open{transform:rotate(180deg)}
+.sbody{padding:0 20px 20px;display:none}
+.sbody.open{display:block}
+h3{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:#888;margin:20px 0 10px;padding-top:14px;border-top:1px solid #f0ede8}
+h3:first-child{border-top:none;padding-top:0;margin-top:8px}
+.def{display:flex;gap:0;margin:7px 0;border:1px solid #ede9e2;border-radius:7px;overflow:hidden}
+.dt{background:#f5f2ec;padding:9px 14px;font-weight:700;font-size:12px;color:#5a4a2a;min-width:180px;display:flex;align-items:flex-start;line-height:1.5}
+.dd{padding:9px 14px;font-size:13px;color:#333;line-height:1.6}
+.dd strong{color:#1a1a18;font-weight:700}
+.note{border-left:3px solid #c9a84c;background:#fdf8ed;padding:10px 14px;border-radius:0 7px 7px 0;margin:10px 0;font-size:13px;color:#5a4a2a}
+.note.blue{border-left-color:#4a7abf;background:#eef4fc;color:#1a3a6a}
+.note.green{border-left-color:#4a8a4a;background:#eef6ee;color:#1a4a1a}
+.note.red{border-left-color:#c94a4a;background:#fdf0f0;color:#5a1a1a}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0}
+th{background:#f5f2ec;padding:8px 10px;text-align:left;font-weight:700;color:#5a4a2a;border:1px solid #e0dbd2}
+td{padding:8px 10px;border:1px solid #e0dbd2;vertical-align:top;line-height:1.55;color:#333}
+.formula{background:#1a1a18;color:#e8e6e0;font-family:'Courier New',monospace;font-size:13px;padding:14px 18px;border-radius:8px;margin:10px 0;line-height:2}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.pill{background:#f0ede8;border:1px solid #e0dbd2;border-radius:99px;padding:3px 11px;font-size:12px;color:#5a4a2a}
+.crits{margin:16px 0 0;padding:14px 16px;background:#f8f7f5;border-radius:8px;border:1px solid #e8e5df}
+.crits p{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#aaa;margin-bottom:8px}
+.cr{font-size:12px;padding:6px 10px;border-radius:6px;margin-bottom:5px;line-height:1.5}
+.cr.b{background:#eef4fc;color:#1a3a6a}
+.cr.c{background:#eef6ee;color:#1a4a1a}
+.cr.d{background:#fdf8ed;color:#5a4a2a}
+.cr strong{font-weight:700}
+ul{padding-left:20px;margin:8px 0}
+li{font-size:13px;color:#333;margin-bottom:5px;line-height:1.6}
+li strong{color:#1a1a18;font-weight:700}
+.steps{margin:10px 0}
+.step{display:flex;gap:10px;margin-bottom:8px}
+.sn{width:24px;height:24px;border-radius:50%;background:#1a1a18;color:#e8e6e0;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.st{font-size:13px;color:#333;line-height:1.6}
+.qbox{border:2px solid #1a1a18;border-radius:10px;margin:14px 0;overflow:hidden}
+.qtop{background:#1a1a18;color:#e8e6e0;padding:10px 16px;font-size:12px;display:flex;align-items:center;gap:8px}
+.qmark{background:#c9a84c;color:#1a1a18;font-weight:700;font-size:11px;padding:2px 8px;border-radius:99px}
+.qq{padding:12px 16px;font-size:14px;color:#1a1a18;font-weight:600;border-bottom:1px solid #e8e5df}
+.qa{padding:12px 16px;background:#fdfcfa}
+.qa p{font-size:13px;color:#333;margin-bottom:6px;line-height:1.6}
+.qa .ans-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#c9a84c;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav class="sidebar">
+<div class="logo"><h1>MYP 5 Chemistry</h1><p>Complete Notes + Exam Q&A</p></div>
+<div class="nav-u">Units</div>
+<div class="nav-i on" onclick="show(0)"><div class="dot"></div>1 · Material World</div>
+<div class="nav-i" onclick="show(1)"><div class="dot"></div>2 · Periodic Table &amp; Bonding</div>
+<div class="nav-i" onclick="show(2)"><div class="dot"></div>3 · Reaction Kinetics</div>
+<div class="nav-i" onclick="show(3)"><div class="dot"></div>4 · Stoichiometry</div>
+<div class="nav-i" onclick="show(4)"><div class="dot"></div>5 · Carbon Chemistry</div>
+<div class="nav-i" onclick="show(5)"><div class="dot"></div>6 · Acids to Electrons</div>
+<div class="cleg">
+<p>Criteria</p>
+<div class="cl"><div class="clb" style="background:#4a7abf"></div>Crit B — Inquiry &amp; design</div>
+<div class="cl"><div class="clb" style="background:#4a8a4a"></div>Crit C — Processing data</div>
+<div class="cl"><div class="clb" style="background:#c9a84c"></div>Crit D — Reflection &amp; evaluation</div>
+</div>
+</nav>
+<div class="main">
+
+<!-- ===== UNIT 1 ===== -->
+<div class="unit on" id="u0">
+<div class="utag">Unit 1 · MYP 1</div>
+<h2 class="utitle">Material World</h2>
+<p class="udesc">States of matter · Particle theory · Mixtures · Separation · Measurements</p>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — States of Matter &amp; Particle Theory</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<h3>Core definitions</h3>
+<div class="def"><div class="dt">Kinetic particle theory</div><div class="dd">All matter is made of tiny particles that are <strong>always moving</strong>. The more energy they have, the faster they move. This theory explains all physical properties of solids, liquids, and gases.</div></div>
+<div class="def"><div class="dt">Solid</div><div class="dd">Particles are <strong>closely packed in a regular lattice</strong> and can only <strong>vibrate about fixed positions</strong>. Strong forces hold them together. Fixed shape and volume. Cannot be compressed.</div></div>
+<div class="def"><div class="dt">Liquid</div><div class="dd">Particles are <strong>close together but randomly arranged</strong>. They can <strong>flow and slide past each other</strong>. Fixed volume but takes the shape of its container. Barely compressible.</div></div>
+<div class="def"><div class="dt">Gas</div><div class="dd">Particles are <strong>far apart, moving rapidly in all directions</strong>. Forces between particles are negligible. No fixed shape or volume. Easily compressed. Fills any container it is placed in.</div></div>
+<div class="def"><div class="dt">Melting point</div><div class="dd">The temperature at which a solid changes to a liquid. <strong>Energy breaks bonds between particles</strong> without raising temperature — shown as a flat section (plateau) on a heating curve.</div></div>
+<div class="def"><div class="dt">Boiling point</div><div class="dd">The temperature at which a liquid changes to a gas throughout the bulk liquid. <strong>Not just at the surface</strong> (that is evaporation). Another plateau on the heating curve.</div></div>
+<div class="def"><div class="dt">Sublimation</div><div class="dd">When a solid changes <strong>directly into a gas</strong> without passing through the liquid state. Example: dry ice (solid CO₂), iodine crystals when heated.</div></div>
+<div class="def"><div class="dt">Diffusion</div><div class="dd">The <strong>net movement of particles from a region of high concentration to low concentration</strong> due to random particle motion, until the particles are evenly spread (equilibrium).</div></div>
+<div class="def"><div class="dt">Latent heat</div><div class="dd">The energy absorbed or released during a <strong>change of state at constant temperature</strong>. It breaks or forms intermolecular bonds — it does not raise the temperature. This is why heating curves have flat sections.</div></div>
+
+<h3>Scientific explanations — the important ones</h3>
+<div class="note"><strong>Why does temperature stay constant during melting?</strong> The heat energy being added is used entirely to break the intermolecular bonds holding the solid lattice together. None of the energy goes into increasing the kinetic energy of particles, so temperature does not rise until all the solid has melted.</div>
+<div class="note"><strong>Why do gases diffuse faster than liquids?</strong> Gas particles have much greater kinetic energy and are far apart — nothing obstructs them. In liquids, particles are close together and must push past each other, slowing diffusion significantly.</div>
+<div class="note"><strong>How does temperature affect diffusion rate?</strong> Higher temperature gives particles more kinetic energy → they move faster → they spread out more quickly → diffusion rate increases.</div>
+<div class="note"><strong>Why are pure substances used as standards?</strong> A pure substance has a precise, fixed melting point. An impure substance melts over a range of temperatures (impurity particles disrupt the regular lattice, requiring less energy to break it) and at a lower temperature than the pure substance. This is the basis of the melting point purity test.</div>
+
+<div class="crits"><p>Criteria connections</p>
+<div class="cr b"><strong>Crit B:</strong> Design an investigation into diffusion — identify IV (e.g. temperature), DV (e.g. distance diffused in a set time), CVs (same particles, same distance, same concentration).</div>
+<div class="cr c"><strong>Crit C:</strong> Read and annotate a heating/cooling curve — label melting point, boiling point, flat sections, and explain what is happening to particles in each section.</div>
+<div class="cr d"><strong>Crit D:</strong> Evaluate the melting point as a test of purity — discuss what results would indicate a pure vs impure sample and any limitations of the method.</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Mixtures, Alloys &amp; Types</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<h3>Core definitions</h3>
+<div class="def"><div class="dt">Pure substance</div><div class="dd">Contains only <strong>one type of particle</strong> (one element or one compound). Has a sharp, fixed melting and boiling point. Examples: pure water, pure gold, pure NaCl.</div></div>
+<div class="def"><div class="dt">Mixture</div><div class="dd">Contains <strong>two or more substances not chemically combined</strong>. Each component keeps its own properties. The components can be separated by physical methods. The composition is variable.</div></div>
+<div class="def"><div class="dt">Solution</div><div class="dd">A <strong>homogeneous</strong> (uniform throughout) mixture where a <strong>solute</strong> is dissolved in a <strong>solvent</strong>. Transparent. Particles are evenly distributed at the molecular level. Cannot be separated by filtration.</div></div>
+<div class="def"><div class="dt">Suspension</div><div class="dd">A <strong>heterogeneous</strong> mixture where insoluble solid particles are dispersed in a liquid. Cloudy appearance. Particles <strong>settle on standing</strong>. Can be separated by filtration. Example: muddy water.</div></div>
+<div class="def"><div class="dt">Emulsion</div><div class="dd">Two <strong>immiscible liquids</strong> mixed together — one liquid is dispersed in droplets throughout the other. Example: milk (fat droplets in water), mayonnaise. Separates unless an emulsifier is present.</div></div>
+<div class="def"><div class="dt">Alloy</div><div class="dd">A <strong>mixture of a metal with one or more other elements</strong> (metals or non-metals). Not a compound — no chemical bonds are formed. Examples: steel (iron + carbon), brass (copper + zinc), bronze (copper + tin).</div></div>
+<div class="def"><div class="dt">Solute</div><div class="dd">The substance that <strong>dissolves</strong> in a solvent. Usually the smaller quantity. Example: salt in saltwater.</div></div>
+<div class="def"><div class="dt">Solvent</div><div class="dd">The <strong>liquid</strong> in which the solute dissolves. Usually the larger quantity. Example: water in saltwater.</div></div>
+
+<h3>Scientific explanation — why alloys are stronger than pure metals</h3>
+<div class="note"><strong>Structure explanation:</strong> In a pure metal, all atoms are the same size and arranged in neat, regular layers. These layers can easily slide over each other when a force is applied — this is why pure metals are soft and malleable. When a different-sized atom (from the added element) is introduced into the lattice, it <strong>distorts the regular structure</strong>. The irregular sizes mean the layers can no longer slide past each other as easily. This makes the alloy <strong>harder and stronger</strong> than either of its component metals alone.</div>
+
+<table>
+<tr><th>Alloy</th><th>Composition</th><th>Properties gained</th><th>Uses</th></tr>
+<tr><td>Steel</td><td>Iron + up to 2% carbon</td><td>Stronger, less brittle than pure iron</td><td>Construction, cars, tools</td></tr>
+<tr><td>Stainless steel</td><td>Iron + chromium + nickel</td><td>Corrosion-resistant, hard</td><td>Cutlery, surgical instruments</td></tr>
+<tr><td>Brass</td><td>Copper + zinc</td><td>Harder than copper, corrosion-resistant</td><td>Musical instruments, taps, fittings</td></tr>
+<tr><td>Bronze</td><td>Copper + tin</td><td>Hard, wear-resistant</td><td>Coins, statues, bearings</td></tr>
+<tr><td>Duralumin</td><td>Aluminium + copper + magnesium</td><td>Strong but very lightweight</td><td>Aircraft, spacecraft frames</td></tr>
+</table>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr d"><strong>Crit D:</strong> If asked to evaluate which alloy suits a specific context — link each property to the specific requirement. E.g. "Stainless steel is most suitable for the surgical instrument because chromium forms a corrosion-resistant oxide layer, preventing rust that could contaminate the wound."</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — All Separation Techniques</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Filtration</div><div class="dd">Separates an <strong>insoluble solid from a liquid</strong>. The filter paper has tiny pores — liquid molecules (filtrate) pass through but large solid particles (residue) are trapped. Principle: <strong>particle size difference</strong>.</div></div>
+<div class="def"><div class="dt">Simple distillation</div><div class="dd">Separates a <strong>solvent from a solution</strong> (e.g. water from saltwater). The solution is heated → solvent evaporates → vapour travels to the condenser → cools back to liquid (distillate). Solute remains behind. Principle: <strong>difference in boiling point</strong>.</div></div>
+<div class="def"><div class="dt">Fractional distillation</div><div class="dd">Separates a <strong>mixture of liquids with different boiling points</strong>. A fractionating column allows repeated evaporation/condensation — the lowest boiling point liquid reaches the top first. Used for crude oil and ethanol/water separation.</div></div>
+<div class="def"><div class="dt">Chromatography</div><div class="dd">Separates <strong>mixtures of dissolved substances</strong> (e.g. dyes, inks). Mobile phase (solvent) carries substances up the stationary phase (paper or silica). Substances that are more soluble or less attracted to stationary phase travel further. Principle: <strong>different solubility and attraction</strong>.</div></div>
+<div class="def"><div class="dt">Rf value</div><div class="dd">A number between 0 and 1 used to <strong>identify a substance</strong> in chromatography. <strong>Rf = distance moved by substance ÷ distance moved by solvent front</strong>. The same substance always has the same Rf in the same solvent — used like a fingerprint.</div></div>
+<div class="def"><div class="dt">Crystallisation</div><div class="dd">Separates a <strong>dissolved solid from its solution</strong>. Solution is heated to evaporate solvent and concentrate it → cooled slowly → crystals form as solubility decreases → crystals filtered off and dried. Produces <strong>purer and larger crystals</strong> than just evaporating to dryness.</div></div>
+<div class="def"><div class="dt">Sublimation (separation)</div><div class="dd">Used when one component of a mixture can <strong>sublime directly from solid to gas</strong>. The sublimable substance vaporises on gentle heating and is collected on a cool surface above. The non-sublimable component stays at the bottom. Example: separating iodine from sand.</div></div>
+<div class="def"><div class="dt">Desalination</div><div class="dd">Removing salt from seawater to make it drinkable. Two main methods: (1) <strong>distillation</strong> — boil seawater, collect steam; (2) <strong>reverse osmosis</strong> — high pressure forces water molecules through a semi-permeable membrane, leaving salt ions behind.</div></div>
+
+<h3>Scientific explanation — how chromatography actually works</h3>
+<div class="note"><strong>Mechanism:</strong> There are two competing forces on each substance. The <strong>mobile phase</strong> (solvent moving up the paper) carries the substance upward. The <strong>stationary phase</strong> (the paper fibres) holds the substance back through intermolecular attractions. A substance that is <strong>very soluble in the solvent</strong> spends more time in the mobile phase and travels further up. A substance that is <strong>strongly attracted to the paper</strong> spends more time attached to the stationary phase and travels less far. Different substances in the mixture have different balances of these two forces — so they separate at different heights.</div>
+
+<div class="crits"><p>Criteria connections</p>
+<div class="cr b"><strong>Crit B:</strong> When designing a separation, state which technique you are using and why — link it directly to the property that allows the separation (particle size, boiling point, solubility, etc.).</div>
+<div class="cr c"><strong>Crit C:</strong> Calculate Rf values from a chromatogram. Identify unknown substances by comparing Rf to a reference. Identify how many substances are in a mixture by counting the number of spots.</div>
+<div class="cr d"><strong>Crit D:</strong> Evaluate which technique is most appropriate — e.g. "Simple distillation cannot separate two liquids with similar boiling points because they evaporate at almost the same temperature. Fractional distillation is needed because the column allows more separation steps."</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Exam Questions — Unit 1</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">1 MARK</span> State question</div>
+<div class="qq">State what is meant by diffusion.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p>The net movement of particles from a region of high concentration to a region of low concentration.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">2 MARKS</span> Explain question</div>
+<div class="qq">Explain why a pure substance has a sharp melting point but an impure substance melts over a range of temperatures.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1]</strong> In a pure substance, all particles are identical, so the same amount of energy is needed to break all the intermolecular bonds → melting occurs at one precise temperature.</p>
+<p><strong>[2]</strong> In an impure substance, the different-sized impurity particles disrupt the regular lattice structure, weakening it → less energy is needed to break the bonds → melting begins at a lower temperature and occurs over a range.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">3 MARKS</span> Explain question</div>
+<div class="qq">Explain, in terms of particles, why a flat section (plateau) appears on a heating curve when a solid is being heated and begins to melt.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1]</strong> During the flat section, heat energy is still being added to the substance.</p>
+<p><strong>[2]</strong> However, this energy is being used entirely to break the intermolecular bonds holding the solid lattice together, not to increase the kinetic energy of the particles.</p>
+<p><strong>[3]</strong> Because kinetic energy does not increase, the temperature does not rise — it stays constant until all bonds are broken and the substance is fully liquid.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">5 MARKS</span> Evaluate / discuss question</div>
+<div class="qq">A student has a mixture of sand and salt dissolved in water. Describe and explain a method to obtain: (a) the sand, and (b) pure dry salt crystals from this mixture. [5]</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — method for sand]</strong> Filter the mixture through filter paper in a funnel. The sand (insoluble solid) is trapped as the residue on the filter paper.</p>
+<p><strong>[1 — why filtration works]</strong> Salt particles are dissolved at the molecular level and pass through the tiny pores in the filter paper; sand particles are too large to pass through.</p>
+<p><strong>[1 — concentrating]</strong> Heat the filtrate (salt solution) in an evaporating dish to evaporate most of the water, concentrating the salt solution.</p>
+<p><strong>[1 — crystallising]</strong> Remove from heat and allow to cool slowly — as the solution cools, the solubility of salt decreases and salt crystals form.</p>
+<p><strong>[1 — finishing]</strong> Filter the crystals, then dry them gently with filter paper or in a low-temperature oven. Do not evaporate to complete dryness, as this could decompose the salt or produce very small impure crystals.</p>
+</div></div>
+
+</div></div>
+</div>
+
+<!-- ===== UNIT 2 ===== -->
+<div class="unit" id="u1">
+<div class="utag">Unit 2 · MYP 3</div>
+<h2 class="utitle">Periodic Table &amp; Bonding</h2>
+<p class="udesc">Atomic structure · Isotopes · Periodic trends · Bonding types · Carbon allotropes</p>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Atomic Structure &amp; Atomic Models</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Atom</div><div class="dd">The <strong>smallest particle of an element</strong> that can exist and still have the chemical properties of that element. Made up of a nucleus containing protons and neutrons, surrounded by electrons in shells.</div></div>
+<div class="def"><div class="dt">Proton</div><div class="dd">Sub-atomic particle in the nucleus. Relative charge <strong>+1</strong>, relative mass <strong>1</strong>. The number of protons defines which element an atom is.</div></div>
+<div class="def"><div class="dt">Neutron</div><div class="dd">Sub-atomic particle in the nucleus. Relative charge <strong>0 (neutral)</strong>, relative mass <strong>1</strong>. Contributes to mass but not charge.</div></div>
+<div class="def"><div class="dt">Electron</div><div class="dd">Sub-atomic particle orbiting the nucleus in shells. Relative charge <strong>−1</strong>, relative mass <strong>≈ 0</strong> (1/1840 of a proton). Number of electrons = number of protons in a neutral atom.</div></div>
+<div class="def"><div class="dt">Atomic number (Z)</div><div class="dd">The <strong>number of protons</strong> in an atom's nucleus. Unique to each element. Also equals the number of electrons in a neutral atom. Defines the element's position in the periodic table.</div></div>
+<div class="def"><div class="dt">Mass number (A)</div><div class="dd">The <strong>total number of protons + neutrons</strong> in the nucleus. Number of neutrons = A − Z.</div></div>
+<div class="def"><div class="dt">Electron shell / energy level</div><div class="dd">A region around the nucleus where electrons are found. Shell 1 (innermost): max 2 electrons. Shell 2: max 8. Shell 3: max 8 (at MYP level). Electrons always fill from the lowest shell first.</div></div>
+<div class="def"><div class="dt">Valence electrons</div><div class="dd">Electrons in the <strong>outermost shell</strong> of an atom. These are the electrons involved in bonding. The number of valence electrons = the group number (for Groups 1–7). They determine how an atom will bond.</div></div>
+<div class="def"><div class="dt">Isotopes</div><div class="dd">Atoms of the <strong>same element</strong> (same number of protons) that have <strong>different numbers of neutrons</strong> — therefore different mass numbers. Same chemical properties (same electron arrangement), slightly different physical properties (different mass).</div></div>
+<div class="def"><div class="dt">Average atomic mass (Ar)</div><div class="dd">The <strong>weighted average mass</strong> of all naturally occurring isotopes of an element, relative to carbon-12. Calculated as: Ar = Σ(isotope mass × % abundance) ÷ 100.</div></div>
+
+<h3>Scientific explanation — why isotopes have same chemical but different physical properties</h3>
+<div class="note"><strong>Same chemical properties:</strong> Chemical behaviour depends entirely on the number and arrangement of electrons. Isotopes of the same element have identical electron configurations, so they form the same bonds and undergo the same reactions — they are chemically indistinguishable.</div>
+<div class="note"><strong>Different physical properties:</strong> Physical properties like mass, density, and rate of diffusion depend on the mass of the particle. Since isotopes have different numbers of neutrons, they have different masses. A heavier isotope diffuses more slowly (Graham's Law: lighter particles move faster at the same temperature).</div>
+
+<h3>History of atomic models — why each was replaced</h3>
+<table>
+<tr><th>Model</th><th>Scientist</th><th>What it said</th><th>Evidence that replaced it</th></tr>
+<tr><td>Solid sphere</td><td>Dalton (1803)</td><td>Atoms are solid, indivisible spheres. Different elements have different masses.</td><td>Thomson discovered electrons — atoms could be divided.</td></tr>
+<tr><td>Plum pudding</td><td>Thomson (1897)</td><td>Negative electrons embedded in a diffuse positive sphere, like fruit in a pudding.</td><td>Rutherford's gold foil experiment — most alpha particles passed straight through. A diffuse positive sphere would not cause large deflections.</td></tr>
+<tr><td>Nuclear model</td><td>Rutherford (1911)</td><td>Tiny dense positive nucleus; electrons orbit it. Atom is mostly empty space.</td><td>Orbiting electrons should continuously emit radiation and spiral into the nucleus — atoms would collapse instantly. This was not observed.</td></tr>
+<tr><td>Shell/planetary model</td><td>Bohr (1913)</td><td>Electrons occupy fixed energy levels (shells). They only emit energy when jumping between levels.</td><td>Explains hydrogen spectrum perfectly but fails for multi-electron atoms. Quantum mechanics gave a more complete picture.</td></tr>
+<tr><td>Quantum model</td><td>Schrödinger et al.</td><td>Electrons exist in probability clouds (orbitals). Exact position cannot be known — only probability of finding electron.</td><td>Currently accepted model. Successfully predicts properties of all elements.</td></tr>
+</table>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr d"><strong>Crit D:</strong> "Evaluate how the atomic model changed over time." — Always explain what evidence caused each change, not just what the new model said. Science progresses when new experimental evidence cannot be explained by the existing model.</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Periodic Table &amp; Periodic Trends</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Period</div><div class="dd">A <strong>horizontal row</strong> in the periodic table. The period number equals the number of electron shells. All elements in Period 3 have 3 electron shells.</div></div>
+<div class="def"><div class="dt">Group</div><div class="dd">A <strong>vertical column</strong> in the periodic table. Elements in the same group have the same number of valence electrons → similar chemical properties.</div></div>
+<div class="def"><div class="dt">Transition metals</div><div class="dd">Elements in Groups 3–12, between the main groups. <strong>Properties:</strong> high melting points, hard, dense, form coloured compounds, can have multiple oxidation states, good catalysts. Examples: iron (Fe), copper (Cu), zinc (Zn).</div></div>
+<div class="def"><div class="dt">Noble gases (Group 0)</div><div class="dd">Helium, neon, argon, etc. Have a <strong>full outer electron shell</strong> (2 for He, 8 for others) → extremely stable → almost no chemical reactivity. Exist as single atoms (monatomic). Used as inert atmospheres and in lighting.</div></div>
+<div class="def"><div class="dt">Atomic radius</div><div class="dd">The <strong>size of an atom</strong> — half the distance between the nuclei of two bonded atoms of the same element. Decreases across a period (more protons pull electrons closer); increases down a group (more shells).</div></div>
+<div class="def"><div class="dt">Ionisation energy (1st)</div><div class="dd">The <strong>energy needed to remove one electron</strong> from a neutral atom in the gas phase. Increases across a period (more protons, smaller atom = stronger pull on electrons); decreases down a group (outer electron further from nucleus, more shielded).</div></div>
+<div class="def"><div class="dt">Electronegativity</div><div class="dd">A measure of an atom's <strong>ability to attract a shared pair of electrons</strong> towards itself in a covalent bond. Increases across a period; decreases down a group. Fluorine has the highest electronegativity of all elements.</div></div>
+<div class="def"><div class="dt">Shielding effect</div><div class="dd">Inner electron shells <strong>partially block the attractive force</strong> of the nucleus from the outer electrons. More inner shells = more shielding = outer electrons feel less nuclear attraction = easier to remove (lower ionisation energy).</div></div>
+
+<h3>Scientific explanation — periodic trends in detail</h3>
+<div class="note"><strong>Why atomic radius decreases across a period:</strong> As you move left to right across a period, each successive element has one more proton in the nucleus. More protons = stronger positive charge = stronger attraction pulling all electrons closer to the nucleus. The number of shells stays the same across a period, so there is no extra shielding. The result is a smaller atom.</div>
+<div class="note"><strong>Why ionisation energy generally increases across a period:</strong> More protons → stronger nuclear pull on the outer electrons → more energy needed to pull one away. The outer electrons are also in the same shell (same distance, same shielding), so the increasing nuclear charge has a direct effect.</div>
+<div class="note"><strong>Why ionisation energy decreases down a group:</strong> Going down a group, each element has one more electron shell. The outer electron is further from the nucleus AND is shielded by more inner electron shells. Both factors reduce the attractive force on the outer electron → it takes less energy to remove it.</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Bonding Types</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Ionic bond</div><div class="dd">Formed between a <strong>metal and a non-metal</strong>. The metal atom <strong>loses</strong> one or more electrons → becomes a positive ion (cation). The non-metal atom <strong>gains</strong> those electrons → becomes a negative ion (anion). The <strong>electrostatic attraction</strong> between oppositely charged ions is the ionic bond.</div></div>
+<div class="def"><div class="dt">Covalent bond</div><div class="dd">Formed between <strong>two non-metals</strong>. Both atoms <strong>share a pair of electrons</strong>. The shared electrons are attracted to both nuclei simultaneously — this attraction holds the atoms together. Can be single (1 pair), double (2 pairs), or triple (3 pairs).</div></div>
+<div class="def"><div class="dt">Metallic bond</div><div class="dd">Metal atoms release their valence electrons into a <strong>"sea" of delocalised electrons</strong> that move freely throughout the structure. The positively charged metal ions (cations) are attracted to this electron sea. This attraction holds the metal together.</div></div>
+<div class="def"><div class="dt">Giant ionic lattice</div><div class="dd">The structure of ionic compounds — <strong>millions of alternating positive and negative ions</strong> arranged in a regular 3D structure. All ions are attracted to their neighbours. This is why ionic compounds have very high melting points — many strong bonds must be broken.</div></div>
+<div class="def"><div class="dt">Simple molecular structure</div><div class="dd">Structure of many covalent compounds — consists of <strong>small, discrete molecules</strong>. The covalent bonds within each molecule are strong. But the forces <strong>between</strong> molecules (intermolecular forces) are weak. It is these weak forces that are overcome on melting/boiling — hence low melting points.</div></div>
+<div class="def"><div class="dt">Giant covalent structure</div><div class="dd">A structure where millions of atoms are joined by a continuous <strong>network of strong covalent bonds</strong> throughout the entire structure. No small molecules. Every bond must be broken to melt it → extremely high melting points. Examples: diamond, graphite, SiO₂.</div></div>
+
+<h3>Scientific explanations — properties from structure</h3>
+<div class="note"><strong>Why ionic compounds conduct electricity when molten or dissolved, but not when solid?</strong> In the solid state, ions are locked in fixed positions in the lattice — they cannot move to carry charge. When melted or dissolved in water, the ionic lattice breaks down and ions become <strong>free to move</strong>. Moving charged particles = electric current.</div>
+<div class="note"><strong>Why metals are malleable (can be hammered into shapes)?</strong> When a force is applied, layers of metal ions slide over each other. The delocalised electron sea moves with them and maintains the bonding throughout — the structure does not break. This is unlike ionic compounds where shifting layers brings like charges together, causing repulsion and shattering.</div>
+<div class="note"><strong>Why simple molecular substances have low melting points?</strong> To melt the substance, you only need to overcome the weak intermolecular forces between the molecules — the strong covalent bonds within the molecules are NOT broken. Weak forces require little energy → low melting point.</div>
+
+<h3>Carbon allotropes — structure explains every property</h3>
+<table>
+<tr><th>Allotrope</th><th>Structure</th><th>Key properties</th><th>Explanation</th><th>Uses</th></tr>
+<tr><td>Diamond</td><td>Each C bonded to 4 others in tetrahedral 3D giant covalent lattice</td><td>Hardest natural substance; very high MP; no electrical conduction; transparent</td><td>4 strong covalent bonds per atom in all directions → extremely rigid. No free electrons → no conduction.</td><td>Cutting tools, jewellery, drill bits</td></tr>
+<tr><td>Graphite</td><td>Layers of hexagonal rings. Each C bonded to 3 others. 1 free electron per C. Weak forces between layers.</td><td>Soft and slippery; conducts electricity; high MP; black; good lubricant</td><td>Layers slide easily (weak interlayer forces). 1 delocalised electron per C → mobile charges → conducts electricity. Strong covalent bonds within layers → high MP.</td><td>Pencil leads, electrodes, lubricant</td></tr>
+<tr><td>Graphene</td><td>Single one-atom-thick layer of graphite — 2D hexagonal sheet</td><td>Strongest known material; excellent electrical conductor; transparent; lightweight</td><td>All atoms bonded in a flat 2D network. Every C contributes 1 free electron. Enormous strength-to-weight ratio.</td><td>Future flexible electronics, composites</td></tr>
+<tr><td>Fullerene (C₆₀)</td><td>60 C atoms forming a hollow sphere (pentagons + hexagons)</td><td>Low MP; molecular structure; can trap other molecules inside hollow cage</td><td>It is a discrete molecule (not giant) → weak intermolecular forces → low MP. Hollow interior can encapsulate drug molecules.</td><td>Drug delivery, nanotechnology</td></tr>
+</table>
+
+<div class="note red"><strong>Key distinction for exam:</strong> In diamond — no free electrons → does not conduct. In graphite — 1 free electron per carbon atom, not used in bonding → can conduct. This single structural difference explains all the electrical property differences between these two allotropes of the same element.</div>
+
+<div class="crits"><p>Criteria connections</p>
+<div class="cr d"><strong>Crit D:</strong> "Evaluate which form of carbon is most suitable for use as an electrode in electrolysis." → Graphite — it conducts electricity (free electrons), has a very high melting point (withstands heat of reaction), and is chemically resistant. Diamond cannot conduct. Graphene is too expensive at scale.</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Exam Questions — Unit 2</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">1 MARK</span></div>
+<div class="qq">State what is meant by an isotope.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p>Atoms of the same element that have the same number of protons but different numbers of neutrons (and therefore different mass numbers).</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">2 MARKS</span></div>
+<div class="qq">Explain why graphite can conduct electricity but diamond cannot, even though both are made only from carbon atoms.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1]</strong> In graphite, each carbon atom forms only 3 covalent bonds, leaving one electron per atom delocalised (free to move) between the layers — these mobile electrons carry electric charge.</p>
+<p><strong>[2]</strong> In diamond, each carbon forms 4 covalent bonds — all valence electrons are used in bonding, so there are no free electrons available to carry charge.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">3 MARKS</span></div>
+<div class="qq">Explain why the first ionisation energy of sodium (Na) is lower than the first ionisation energy of chlorine (Cl). Both are in Period 3.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1]</strong> Chlorine has more protons (17) than sodium (11), so the nucleus of chlorine exerts a stronger attractive force on the outer electrons.</p>
+<p><strong>[2]</strong> Both elements have electrons in the same shell (shell 3), so shielding from inner shells is the same for both.</p>
+<p><strong>[3]</strong> Because chlorine's outer electron is attracted more strongly to the nucleus, more energy is needed to remove it → chlorine has a higher first ionisation energy than sodium.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">5 MARKS</span></div>
+<div class="qq">Explain why ionic compounds have high melting points and conduct electricity when molten, but simple molecular covalent substances have low melting points and do not conduct electricity in any state. [5]</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — ionic MP]</strong> Ionic compounds form giant lattice structures with strong electrostatic forces of attraction between oppositely charged ions in all directions — a large amount of energy is needed to overcome these forces, giving a high melting point.</p>
+<p><strong>[2 — ionic conduction]</strong> When molten, the ionic lattice breaks down and ions become free to move and carry charge — so molten ionic compounds conduct electricity.</p>
+<p><strong>[3 — why not solid ionic]</strong> In the solid state, ions are fixed in position and cannot move → solid ionic compounds do not conduct.</p>
+<p><strong>[4 — molecular MP]</strong> Simple molecular substances have weak intermolecular forces between their molecules (not the strong covalent bonds within). Only the weak intermolecular forces need to be overcome to melt the substance → low melting point.</p>
+<p><strong>[5 — molecular no conduction]</strong> Molecules have no overall charge and carry no free electrons or mobile ions in any state (solid, liquid, or gas) → simple molecular substances cannot conduct electricity.</p>
+</div></div>
+
+</div></div>
+</div>
+
+<!-- ===== UNIT 3 ===== -->
+<div class="unit" id="u2">
+<div class="utag">Unit 3</div>
+<h2 class="utitle">Reaction Kinetics</h2>
+<p class="udesc">Rate of reaction · Collision theory · Equilibrium · Graph skills · Reactivity series · Corrosion</p>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Rate of Reaction &amp; Collision Theory</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Rate of reaction</div><div class="dd">A measure of how <strong>quickly reactants are converted into products</strong>. Rate = quantity of reactant used (or product formed) ÷ time. Units: g/s, cm³/s, mol/s.</div></div>
+<div class="def"><div class="dt">Activation energy (Eₐ)</div><div class="dd">The <strong>minimum energy</strong> that colliding particles must have for a reaction to occur. It is the energy needed to break the existing bonds in the reactants so new bonds can form.</div></div>
+<div class="def"><div class="dt">Collision theory</div><div class="dd">Reactions occur when particles collide with: (1) <strong>the correct orientation</strong> (right parts facing each other), and (2) <strong>energy ≥ activation energy</strong>. Collisions that meet both conditions are called <strong>effective collisions</strong>. Rate of reaction is proportional to the frequency of effective collisions.</div></div>
+<div class="def"><div class="dt">Catalyst</div><div class="dd">A substance that <strong>increases the rate of a reaction without being permanently changed or consumed</strong>. It provides an alternative reaction pathway with a lower activation energy — so more particles have enough energy to react. It does not change the products or the energy change of the reaction.</div></div>
+<div class="def"><div class="dt">Concentration</div><div class="dd">The amount of solute dissolved per unit volume of solution. Units: mol/dm³. Higher concentration = <strong>more particles in the same space</strong> → more frequent collisions → faster rate.</div></div>
+<div class="def"><div class="dt">Surface area</div><div class="dd">The total area of a solid that is <strong>exposed and available for reaction</strong>. Increasing surface area (e.g. grinding a solid into powder) exposes more particles at the surface → more collisions possible per second → faster rate.</div></div>
+
+<h3>Scientific explanations — every factor with collision theory reasoning</h3>
+<div class="note"><strong>Temperature increase → faster rate because:</strong> Higher temperature gives particles more kinetic energy → they move faster → they collide more frequently → AND a much greater proportion of particles now have energy ≥ the activation energy. Both effects increase the number of effective collisions per second. A 10°C rise approximately doubles the reaction rate.</div>
+<div class="note"><strong>Concentration increase → faster rate because:</strong> More solute particles are present per unit volume → particles are closer together → they collide more frequently → more effective collisions per second. (The energy of individual collisions does not change — just the frequency.)</div>
+<div class="note"><strong>Surface area increase → faster rate because:</strong> When a solid is broken into smaller pieces, the same total mass has more particles exposed at the surface. Only surface particles can collide with the other reactant. More surface particles available → more collisions per second → faster rate.</div>
+<div class="note"><strong>Catalyst → faster rate because:</strong> The catalyst provides a different reaction pathway — one with a lower activation energy. This means a larger proportion of the particles already have enough energy to react (you don't need to raise temperature). The catalyst is not consumed — it can continue to work. Examples: MnO₂ for H₂O₂ decomposition; iron for the Haber process.</div>
+<div class="note red"><strong>What a catalyst does NOT do:</strong> It does not make the reaction more exothermic or endothermic. It does not change the equilibrium position. It does not increase the energy of the particles. It only lowers the activation energy — providing a shortcut.</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Equilibrium &amp; Le Chatelier's Principle</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Reversible reaction</div><div class="dd">A reaction that can proceed in both the <strong>forward direction</strong> (reactants → products) and the <strong>reverse direction</strong> (products → reactants). Shown by the symbol ⇌.</div></div>
+<div class="def"><div class="dt">Dynamic equilibrium</div><div class="dd">The state reached in a closed system when the <strong>rate of the forward reaction equals the rate of the reverse reaction</strong>. Concentrations of reactants and products remain constant (but not necessarily equal). Both reactions are still occurring — the equilibrium is "dynamic" (not static).</div></div>
+<div class="def"><div class="dt">Le Chatelier's principle</div><div class="dd">If a change is applied to a system at equilibrium, <strong>the equilibrium will shift in the direction that opposes (counteracts) that change</strong>. Used to predict how concentration, temperature, and pressure affect equilibrium position.</div></div>
+
+<h3>Le Chatelier's predictions — with full scientific explanation</h3>
+<table>
+<tr><th>Change applied</th><th>Equilibrium shifts</th><th>Why (scientific explanation)</th></tr>
+<tr><td>Increase temperature</td><td>Towards the endothermic direction</td><td>The system absorbs the extra heat by favouring the reaction that takes in heat — this counteracts the temperature increase.</td></tr>
+<tr><td>Decrease temperature</td><td>Towards the exothermic direction</td><td>The system releases heat by favouring the reaction that produces heat — this counteracts the temperature decrease.</td></tr>
+<tr><td>Increase pressure (gases)</td><td>Towards the side with fewer moles of gas</td><td>Fewer gas molecules = lower pressure — this opposes the increase. Count moles of gas on each side of the equation to determine which way it shifts.</td></tr>
+<tr><td>Increase concentration of a reactant</td><td>Towards products (right)</td><td>The forward reaction speeds up to use up the extra reactant — restoring balance.</td></tr>
+<tr><td>Add a catalyst</td><td>No change in position</td><td>Catalyst speeds up forward and reverse reactions equally. Equilibrium is reached faster but the position (ratio of products to reactants) does not change.</td></tr>
+</table>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Graph &amp; Data Skills</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Independent variable (IV)</div><div class="dd">The variable you <strong>deliberately change</strong> in an experiment. Always plotted on the x-axis. Only one IV per fair test.</div></div>
+<div class="def"><div class="dt">Dependent variable (DV)</div><div class="dd">The variable you <strong>measure</strong> in response to the IV. Always plotted on the y-axis. Changes as a result of the IV.</div></div>
+<div class="def"><div class="dt">Controlled variable (CV)</div><div class="dd">All variables that are <strong>kept constant</strong> to ensure a fair test. If CVs change, you cannot be sure it was the IV causing the change in DV.</div></div>
+<div class="def"><div class="dt">Line of best fit</div><div class="dd">A <strong>single smooth line or curve</strong> drawn through the middle of data points on a scatter graph. It does not connect dot-to-dot. It shows the overall trend. Minimises total distance of all points from the line.</div></div>
+<div class="def"><div class="dt">Outlier / anomalous result</div><div class="dd">A data point that <strong>does not follow the general trend</strong> — it lies far from the line of best fit. Circle it on the graph. Do not include it in the line of best fit. Suggest a reason (e.g. measurement error, contaminated sample).</div></div>
+<div class="def"><div class="dt">Gradient</div><div class="dd">The <strong>slope of a line</strong> on a graph. Gradient = Δy ÷ Δx. Use a large triangle (at least half the line). Always include units. On a rate graph, gradient = rate of reaction at that moment.</div></div>
+<div class="def"><div class="dt">Reliability</div><div class="dd">How <strong>consistent / repeatable</strong> results are. Reliable data shows little variation between repeats. Shown by points clustered tightly around the line of best fit.</div></div>
+<div class="def"><div class="dt">Validity</div><div class="dd">Whether the experiment actually measures what it claims to measure. An investigation is valid if the method correctly controls all variables except the IV.</div></div>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr b"><strong>Crit B:</strong> State your IV, DV, and at least 3 CVs. Explain how you will control each CV. Explain why the method is safe. Predict the outcome based on scientific reasoning.</div>
+<div class="cr c"><strong>Crit C:</strong> Plot data correctly (IV on x-axis, DV on y-axis, correct scale using most of the grid, labelled axes with units). Draw line of best fit. Calculate gradient with correct units. Identify and circle outliers. Comment on the trend.</div>
+<div class="cr d"><strong>Crit D:</strong> Evaluate reliability (how close are repeats?), validity (were all CVs controlled?), and suggest specific improvements (e.g. "Use a light sensor instead of visual judgement to determine the endpoint more objectively and reduce human error").</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Reactivity Series, Extraction &amp; Corrosion</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Reactivity series</div><div class="dd">A list of metals (and hydrogen) arranged in <strong>order of decreasing reactivity</strong>. Most reactive at the top: K, Na, Ca, Mg, Al, Zn, Fe, Pb, H, Cu, Ag, Au. More reactive metals lose electrons more easily and react more vigorously with water, acid, and oxygen.</div></div>
+<div class="def"><div class="dt">Displacement reaction</div><div class="dd">A reaction where a <strong>more reactive metal displaces a less reactive metal</strong> from its salt solution. The more reactive metal loses electrons (oxidised); the less reactive metal ion gains electrons (reduced). This is a redox reaction.</div></div>
+<div class="def"><div class="dt">Ore</div><div class="dd">A naturally occurring rock from which a metal can be <strong>extracted economically</strong>. Most metals exist as oxides, sulfides, or carbonates in ores — they must be reduced to obtain the pure metal.</div></div>
+<div class="def"><div class="dt">Reduction (extraction)</div><div class="dd">The process of removing oxygen from a metal oxide (or gaining electrons) to obtain the pure metal. Carbon or carbon monoxide acts as the reducing agent in the blast furnace.</div></div>
+<div class="def"><div class="dt">Electrolysis (extraction)</div><div class="dd">Using <strong>electrical energy to decompose an ionic compound</strong> to extract very reactive metals (Al, Na, Mg) that cannot be reduced by carbon. The compound must be molten or dissolved to free the ions.</div></div>
+<div class="def"><div class="dt">Corrosion</div><div class="dd">The gradual <strong>destruction of a metal by chemical reaction</strong> with its environment. Most commonly oxidation by oxygen and water. Rusting is the specific corrosion of iron.</div></div>
+<div class="def"><div class="dt">Rusting</div><div class="dd">The corrosion of iron. Requires <strong>both water AND oxygen</strong> simultaneously — neither alone causes rust. Product: hydrated iron(III) oxide (Fe₂O₃·xH₂O). Salt water accelerates rusting (dissolved ions improve electrical conductivity of the water layer).</div></div>
+<div class="def"><div class="dt">Sacrificial protection</div><div class="dd">Attaching a <strong>more reactive metal</strong> (zinc or magnesium) to iron. The more reactive metal corrodes preferentially — it is "sacrificed" to protect the iron. The iron cannot corrode as long as the sacrificial metal remains. Used on underground pipes and ships' hulls.</div></div>
+<div class="def"><div class="dt">Galvanising</div><div class="dd">Coating iron with a layer of <strong>zinc</strong>. Provides two forms of protection: (1) physical barrier (zinc coat keeps water/O₂ away), and (2) sacrificial protection (even if coating is scratched, zinc corrodes before iron).</div></div>
+
+<h3>Scientific explanation — why galvanising is better than tin plating</h3>
+<div class="note"><strong>Galvanising (zinc coat):</strong> Zinc is MORE reactive than iron. So even if the zinc coating is scratched and both metals are exposed to water and oxygen, zinc corrodes first (it is the sacrificial anode). The iron underneath is protected even when the surface is damaged.</div>
+<div class="note red"><strong>Tin plating (tin can):</strong> Tin is LESS reactive than iron. If the tin coating is scratched and iron is exposed, iron is now the more reactive metal and corrodes first — rapidly. Tin plating only works as long as the physical barrier is intact.</div>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr d"><strong>Crit D:</strong> "Which method of corrosion prevention is most suitable for a ship's hull in seawater?" → Sacrificial anodes (zinc/magnesium bolted to hull) + paint coating. Justify: paint provides the physical barrier; sacrificial anodes protect any scratched/exposed areas. Salt water accelerates corrosion so a backup method is essential. Consider cost of replacing anodes vs cost of replacing the entire hull.</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Exam Questions — Unit 3</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">1 MARK</span></div>
+<div class="qq">State what is meant by activation energy.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p>The minimum energy that colliding particles must possess for a reaction to occur.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">2 MARKS</span></div>
+<div class="qq">Explain, using collision theory, why increasing the concentration of a reactant increases the rate of reaction.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1]</strong> Increasing concentration means more reactant particles are present in the same volume of solution — the particles are closer together.</p>
+<p><strong>[2]</strong> This increases the frequency of collisions between reactant particles → more effective collisions occur per second → rate of reaction increases.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">3 MARKS</span></div>
+<div class="qq">A student investigates how surface area affects the rate of reaction between marble chips (calcium carbonate) and hydrochloric acid, measuring the volume of CO₂ gas produced over time. Identify the independent variable, dependent variable, and one controlled variable, and explain why it must be controlled.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — IV]</strong> Independent variable: the surface area of the marble chips (e.g. large lumps vs small chips vs powder, same total mass each time).</p>
+<p><strong>[2 — DV]</strong> Dependent variable: the volume of carbon dioxide gas produced per unit time (cm³/s), measured using a gas syringe.</p>
+<p><strong>[3 — CV + explanation]</strong> Controlled variable: the concentration of hydrochloric acid. This must be kept constant because a higher concentration would independently increase the collision frequency, making it impossible to determine whether the surface area or the concentration caused the change in rate.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">5 MARKS</span></div>
+<div class="qq">The Haber process produces ammonia: N₂(g) + 3H₂(g) ⇌ 2NH₃(g). The forward reaction is exothermic. Explain, using Le Chatelier's principle, the effect of (a) increasing pressure and (b) increasing temperature on the yield of ammonia. Then explain why a compromise temperature of 450°C is used in industry despite not giving the highest yield. [5]</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — pressure effect on yield]</strong> Increasing pressure shifts the equilibrium towards the side with fewer moles of gas. The left side has 1 + 3 = 4 moles of gas; the right has 2 moles. So increasing pressure shifts the equilibrium to the right → yield of ammonia increases.</p>
+<p><strong>[2 — temperature effect on yield]</strong> The forward reaction is exothermic. Increasing temperature shifts the equilibrium towards the endothermic (reverse) direction, to absorb the extra heat. This shifts equilibrium to the left → yield of ammonia decreases.</p>
+<p><strong>[3 — so why not use low temperature?]</strong> A lower temperature would give a higher yield (equilibrium favours forward reaction), but the reaction rate would be extremely slow — it would take too long to produce ammonia at a commercially useful rate.</p>
+<p><strong>[4 — compromise]</strong> 450°C is a compromise — the rate is fast enough to be economically viable, even though the yield at equilibrium is not the theoretical maximum.</p>
+<p><strong>[5 — catalyst role]</strong> An iron catalyst is used to increase the rate of reaction at this temperature without affecting the equilibrium position — helping reach equilibrium faster and making the process more efficient overall.</p>
+</div></div>
+
+</div></div>
+</div>
+
+<!-- ===== UNIT 4 ===== -->
+<div class="unit" id="u3">
+<div class="utag">Unit 4</div>
+<h2 class="utitle">Stoichiometry</h2>
+<p class="udesc">Balancing equations · Conservation of mass · The mole · Avogadro · Molar calculations · Gas laws</p>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Equations &amp; Conservation of Mass</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Conservation of mass</div><div class="dd">In any chemical reaction, <strong>atoms are neither created nor destroyed</strong> — only rearranged. Therefore the total mass of reactants always equals the total mass of products. This is why equations must be balanced.</div></div>
+<div class="def"><div class="dt">Balanced equation</div><div class="dd">A chemical equation where the <strong>number of atoms of each element is the same on both sides</strong>. Only coefficients (numbers in front) can be changed to balance — never subscripts (numbers within the formula).</div></div>
+<div class="def"><div class="dt">Empirical formula</div><div class="dd">The <strong>simplest whole-number ratio</strong> of atoms of each element in a compound. Found by dividing % composition by relative atomic mass, then simplifying. Example: glucose empirical formula = CH₂O.</div></div>
+<div class="def"><div class="dt">Molecular formula</div><div class="dd">The <strong>actual number of atoms</strong> of each element in one molecule. May be a multiple of the empirical formula. Example: glucose molecular formula = C₆H₁₂O₆ (6 × CH₂O).</div></div>
+
+<h3>Why mass appears to change — and why it doesn't really</h3>
+<div class="note"><strong>Burning magnesium (mass increases):</strong> Mass appears to increase because magnesium reacts with oxygen from the air. The oxygen atoms from the air are not being weighed initially — but they are now part of the magnesium oxide product. Total mass (Mg + O₂) = mass of MgO. Mass is conserved.</div>
+<div class="note"><strong>Thermal decomposition (mass decreases):</strong> If a gas is produced and escapes the container, the measured mass decreases. Example: CaCO₃ → CaO + CO₂. The CO₂ gas escapes. The mass of the solid in the container decreases. But if you count the escaped gas, total mass is still conserved.</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — The Mole &amp; All Molar Calculations</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Mole (mol)</div><div class="dd">The SI unit for amount of substance. <strong>1 mole = 6.02 × 10²³ particles</strong> (atoms, molecules, ions, or formula units). The mole bridges the gap between the atomic scale and the macroscopic scale.</div></div>
+<div class="def"><div class="dt">Avogadro's constant (Nₐ)</div><div class="dd">The number of particles in exactly one mole: <strong>6.02 × 10²³ mol⁻¹</strong>. Named after Amedeo Avogadro. This number was chosen so that 1 mole of any substance has a mass in grams equal to its relative formula mass.</div></div>
+<div class="def"><div class="dt">Molar mass (Mr)</div><div class="dd">The <strong>mass of one mole</strong> of a substance. Numerically equal to the relative formula mass (Mr), but in units of g/mol. Example: Mr of H₂O = 2(1) + 16 = 18 g/mol. So 1 mole of water has mass 18 g.</div></div>
+<div class="def"><div class="dt">Molar concentration</div><div class="dd">The number of moles of solute <strong>dissolved per 1 dm³</strong> (1 litre) of solution. Units: mol/dm³ (also written mol/L or M). Formula: c = n ÷ V (V must be in dm³).</div></div>
+<div class="def"><div class="dt">Molar volume of a gas</div><div class="dd">At room temperature and pressure (RTP: 25°C, 1 atm), <strong>1 mole of any gas occupies 24 dm³</strong> (24,000 cm³). This is the same for all gases regardless of their mass.</div></div>
+
+<h3>All four mole equations</h3>
+<div class="formula">
+n = m ÷ Mr          → moles from mass (m in grams, Mr in g/mol)
+n = c × V           → moles from concentration (c in mol/dm³, V in dm³!)
+n = V(gas) ÷ 24     → moles from gas volume at RTP (V in dm³)
+N = n × Nₐ          → number of particles from moles
+
+KEY CONVERSIONS:
+cm³ → dm³: divide by 1000
+dm³ → cm³: multiply by 1000
+K = °C + 273
+</div>
+
+<h3>How to do a stoichiometry calculation — step by step</h3>
+<div class="steps">
+<div class="step"><div class="sn">1</div><div class="st">Write the balanced equation. Write the mole ratio underneath the relevant substances.</div></div>
+<div class="step"><div class="sn">2</div><div class="st">Calculate moles of the substance you are given information about (use n = m/Mr or n = cV).</div></div>
+<div class="step"><div class="sn">3</div><div class="st">Scale using the mole ratio from the equation to find moles of the substance you want.</div></div>
+<div class="step"><div class="sn">4</div><div class="st">Convert moles back to mass, volume, or concentration as the question requires.</div></div>
+</div>
+
+<div class="note blue"><strong>Worked example:</strong> What mass of water is produced when 4 g of hydrogen burns in excess oxygen?<br>
+2H₂ + O₂ → 2H₂O (ratio: 2 mol H₂ : 2 mol H₂O = 1:1)<br>
+n(H₂) = 4 ÷ 2 = 2 mol<br>
+n(H₂O) = 2 mol (1:1 ratio)<br>
+m(H₂O) = 2 × 18 = 36 g</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Gas Laws</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Boyle's Law</div><div class="dd">At constant temperature, the <strong>pressure and volume of a gas are inversely proportional</strong>: P₁V₁ = P₂V₂. Explanation: if volume decreases, particles are in a smaller space → they hit the walls more often → pressure increases.</div></div>
+<div class="def"><div class="dt">Charles's Law</div><div class="dd">At constant pressure, the <strong>volume of a gas is directly proportional to its absolute temperature</strong> (in Kelvin): V₁/T₁ = V₂/T₂. Explanation: higher temperature gives particles more energy → they move faster and push the walls harder → volume expands to maintain constant pressure.</div></div>
+<div class="def"><div class="dt">Gay-Lussac's / Pressure Law</div><div class="dd">At constant volume, the <strong>pressure of a gas is directly proportional to its absolute temperature</strong>: P₁/T₁ = P₂/T₂. Explanation: higher temperature → faster particles → hit walls more often and with more force → higher pressure.</div></div>
+<div class="def"><div class="dt">Combined Gas Law</div><div class="dd">When all three variables change: <strong>P₁V₁/T₁ = P₂V₂/T₂</strong>. Used for closed systems. Temperature MUST be in Kelvin.</div></div>
+<div class="def"><div class="dt">Absolute zero</div><div class="dd">0 K (−273°C) — the theoretical temperature at which particles have <strong>zero kinetic energy</strong> and the volume of a gas would be zero. Cannot be reached in practice.</div></div>
+
+<h3>Real-life applications — linked to the law</h3>
+<table>
+<tr><th>Application</th><th>Which law</th><th>Explanation</th></tr>
+<tr><td>Bicycle pump / syringe</td><td>Boyle's Law</td><td>Pushing the plunger decreases volume → pressure increases → gas is pushed out.</td></tr>
+<tr><td>Scuba diving bends</td><td>Boyle's Law</td><td>At depth, high pressure compresses gas in lungs. Ascending too fast → pressure drops → gas expands rapidly in bloodstream → bubbles form in tissues (decompression sickness).</td></tr>
+<tr><td>Hot air balloon</td><td>Charles's Law</td><td>Heating air inside the balloon increases its volume → makes it less dense than surrounding cool air → balloon rises.</td></tr>
+<tr><td>Aerosol cans in hot car</td><td>Pressure Law</td><td>Temperature rises → gas pressure inside the can increases → risk of explosion.</td></tr>
+<tr><td>Weather balloon</td><td>Combined Gas Law</td><td>As altitude increases: external pressure drops AND temperature drops. Volume increases until balloon bursts.</td></tr>
+</table>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr c"><strong>Crit C:</strong> All mole and gas law calculations are Crit C. Always show the formula, substitute values, then calculate. Convert units before substituting (cm³ → dm³, °C → K).</div>
+<div class="cr d"><strong>Crit D:</strong> Evaluate the real-world application of gas laws — e.g. evaluate the safety implications of increasing temperature in a sealed gas container. Link to the pressure law: T increases → P increases → risk of rupture if the container cannot withstand the pressure.</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Exam Questions — Unit 4</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">1 MARK</span></div>
+<div class="qq">State the volume occupied by 1 mole of any gas at RTP.</div>
+<div class="qa"><div class="ans-label">Model Answer</div><p>24 dm³ (24,000 cm³).</p></div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">2 MARKS</span></div>
+<div class="qq">Calculate the number of moles in 11 g of carbon dioxide (CO₂). [Mr of CO₂ = 44]</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — formula and substitution]</strong> n = m ÷ Mr = 11 ÷ 44</p>
+<p><strong>[2 — answer with unit]</strong> n = 0.25 mol</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">3 MARKS</span></div>
+<div class="qq">A gas occupies 2.0 dm³ at 300 K and 100 kPa. Calculate its volume at 400 K and 200 kPa.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — identify and state formula]</strong> P₁V₁/T₁ = P₂V₂/T₂ → V₂ = P₁V₁T₂ ÷ (T₁P₂)</p>
+<p><strong>[2 — substitute correctly]</strong> V₂ = (100 × 2.0 × 400) ÷ (300 × 200) = 80,000 ÷ 60,000</p>
+<p><strong>[3 — answer with unit]</strong> V₂ = 1.33 dm³</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">5 MARKS</span></div>
+<div class="qq">25.0 cm³ of sodium hydroxide solution (0.100 mol/dm³) is exactly neutralised by hydrochloric acid of unknown concentration. The volume of acid required was 20.0 cm³. Calculate the concentration of the hydrochloric acid. Show all working. [5]</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — balanced equation]</strong> NaOH + HCl → NaCl + H₂O. Mole ratio: 1:1.</p>
+<p><strong>[2 — convert volume]</strong> V(NaOH) = 25.0 cm³ ÷ 1000 = 0.0250 dm³.</p>
+<p><strong>[3 — moles of NaOH]</strong> n(NaOH) = c × V = 0.100 × 0.0250 = 0.00250 mol.</p>
+<p><strong>[4 — moles of HCl]</strong> From 1:1 ratio, n(HCl) = 0.00250 mol.</p>
+<p><strong>[5 — concentration of HCl]</strong> V(HCl) = 20.0 ÷ 1000 = 0.0200 dm³. c(HCl) = n ÷ V = 0.00250 ÷ 0.0200 = 0.125 mol/dm³.</p>
+</div></div>
+
+</div></div>
+</div>
+
+<!-- ===== UNIT 5 ===== -->
+<div class="unit" id="u4">
+<div class="utag">Unit 5 · MYP 2</div>
+<h2 class="utitle">Carbon — The Element of Life</h2>
+<p class="udesc">Organic chemistry · IUPAC naming · Homologous series · Energy changes · Combustion</p>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Organic Chemistry &amp; Homologous Series</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Organic chemistry</div><div class="dd">The chemistry of <strong>carbon-containing compounds</strong>. Carbon is unique because it can form 4 covalent bonds and bond to other carbon atoms in long chains, rings, and branches (called catenation) → millions of different organic compounds exist.</div></div>
+<div class="def"><div class="dt">Homologous series</div><div class="dd">A <strong>family of organic compounds</strong> that: share the same functional group; follow the same general formula; differ by –CH₂– between successive members; show gradual trends in physical properties; and have similar chemical properties.</div></div>
+<div class="def"><div class="dt">Functional group</div><div class="dd">The <strong>specific group of atoms</strong> in an organic molecule responsible for its characteristic chemical reactions. The functional group determines which homologous series a compound belongs to.</div></div>
+<div class="def"><div class="dt">Saturated compound</div><div class="dd">A compound with <strong>only single covalent bonds</strong> between carbon atoms. Cannot undergo addition reactions. Example: all alkanes.</div></div>
+<div class="def"><div class="dt">Unsaturated compound</div><div class="dd">A compound containing at least one <strong>C=C double bond</strong> (or triple bond). Can undergo addition reactions. Example: all alkenes. Test: decolourises orange bromine water → colourless.</div></div>
+
+<h3>The five homologous series</h3>
+<table>
+<tr><th>Series</th><th>General formula</th><th>Functional group</th><th>Suffix</th><th>Example (n=2)</th></tr>
+<tr><td>Alkanes</td><td>CₙH₂ₙ₊₂</td><td>None — only C–C single bonds</td><td>-ane</td><td>Ethane, C₂H₆</td></tr>
+<tr><td>Alkenes</td><td>CₙH₂ₙ</td><td>C=C double bond</td><td>-ene</td><td>Ethene, C₂H₄</td></tr>
+<tr><td>Alcohols</td><td>CₙH₂ₙ₊₁OH</td><td>–OH (hydroxyl)</td><td>-ol</td><td>Ethanol, C₂H₅OH</td></tr>
+<tr><td>Carboxylic acids</td><td>CₙH₂ₙ₊₁COOH</td><td>–COOH (carboxyl)</td><td>-anoic acid</td><td>Ethanoic acid, CH₃COOH</td></tr>
+<tr><td>Esters</td><td>Variable</td><td>–COO– (ester linkage)</td><td>-yl -anoate</td><td>Ethyl ethanoate</td></tr>
+</table>
+<h3>IUPAC naming prefixes</h3>
+<div class="pills">
+<span class="pill">1C = meth-</span><span class="pill">2C = eth-</span><span class="pill">3C = prop-</span><span class="pill">4C = but-</span><span class="pill">5C = pent-</span><span class="pill">6C = hex-</span>
+</div>
+
+<h3>Why boiling point increases with chain length</h3>
+<div class="note"><strong>Explanation:</strong> Longer carbon chains have more electrons → stronger London dispersion forces (temporary dipole-induced dipole forces) between molecules → more energy needed to separate the molecules → higher boiling point. This is why methane (CH₄) is a gas at room temperature but hexadecane (C₁₆H₃₄, found in diesel) is a liquid.</div>
+
+<h3>Ester formation — the science behind it</h3>
+<div class="def"><div class="dt">Esterification</div><div class="dd">A <strong>condensation reaction</strong> between an alcohol and a carboxylic acid to form an ester and water. Requires an acid catalyst (e.g. H₂SO₄) and gentle heating. The reaction is reversible. Example: ethanol + ethanoic acid ⇌ ethyl ethanoate + water. Esters have characteristic fruity smells.</div></div>
+<div class="note"><strong>Naming esters:</strong> First word comes from the alcohol (change -ol → -yl). Second word comes from the acid (change -anoic acid → -anoate). Example: propanol + ethanoic acid → propyl ethanoate + water.</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Energy Changes in Reactions</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Exothermic reaction</div><div class="dd">A reaction that <strong>releases energy to the surroundings</strong>. Temperature of the surroundings increases. ΔH is negative (−). Products have lower energy than reactants. Energy released when new bonds form > energy needed to break old bonds.</div></div>
+<div class="def"><div class="dt">Endothermic reaction</div><div class="dd">A reaction that <strong>absorbs energy from the surroundings</strong>. Temperature of the surroundings decreases. ΔH is positive (+). Products have higher energy than reactants. Energy needed to break bonds > energy released forming new bonds.</div></div>
+<div class="def"><div class="dt">Bond energy</div><div class="dd">The <strong>energy required to break one mole of a particular covalent bond</strong> in the gas phase. Breaking bonds always requires energy (endothermic). Forming bonds always releases energy (exothermic).</div></div>
+<div class="def"><div class="dt">ΔH (enthalpy change)</div><div class="dd">The <strong>heat energy change</strong> for a reaction at constant pressure. ΔH = Σ(bond energies broken) − Σ(bond energies formed). Negative = exothermic; positive = endothermic.</div></div>
+<div class="def"><div class="dt">Activation energy (Eₐ)</div><div class="dd">On an energy profile diagram, it is the <strong>energy difference between the reactants and the peak</strong> (transition state). A catalyst lowers this peak, providing an alternative pathway with lower Eₐ.</div></div>
+
+<h3>The critical distinction — bonds breaking vs intermolecular forces</h3>
+<div class="note red"><strong>Common mistake to avoid:</strong> When a simple molecular substance melts or boils, the covalent bonds inside the molecules are NOT broken. Only the weak intermolecular forces between molecules are overcome. This is why simple molecular substances have low melting points. Covalent bonds are only broken during chemical reactions (e.g. combustion).</div>
+
+<h3>Combustion — complete vs incomplete</h3>
+<table>
+<tr><th></th><th>Complete combustion</th><th>Incomplete combustion</th></tr>
+<tr><td>Oxygen supply</td><td>Excess / plentiful</td><td>Limited / insufficient</td></tr>
+<tr><td>Products</td><td>CO₂ and H₂O only</td><td>CO and/or C (soot) and H₂O</td></tr>
+<tr><td>Flame colour</td><td>Blue, non-luminous</td><td>Yellow/orange, sooty, luminous</td></tr>
+<tr><td>Energy released</td><td>Maximum (most efficient)</td><td>Less than complete combustion</td></tr>
+</table>
+
+<h3>Scientific explanation — why CO is dangerous</h3>
+<div class="note red"><strong>Carbon monoxide (CO) toxicity mechanism:</strong> CO binds to haemoglobin in red blood cells with an affinity approximately 200 times greater than oxygen. This forms carboxyhaemoglobin — a stable compound that cannot carry oxygen. The cells are deprived of oxygen → tissue damage → death at high concentrations. CO is colourless and odourless — there is no sensory warning. This is why CO detectors are essential in homes with gas appliances.</div>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr c"><strong>Crit C:</strong> Calculate ΔH using bond energies. Draw and label energy profile diagrams — mark reactants, products, Eₐ, ΔH, and show the effect of a catalyst (lower peak, same start and end points).</div>
+<div class="cr d"><strong>Crit D:</strong> Evaluate environmental and social impacts of fossil fuel combustion — CO₂ (greenhouse effect, global warming), CO (toxicity), SO₂/NOₓ (acid rain). Compare with biofuels — biofuels are carbon-neutral in theory (CO₂ released = CO₂ absorbed during growth) but consider land use, food security, energy to grow crops.</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Exam Questions — Unit 5</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">1 MARK</span></div>
+<div class="qq">Give the name of the functional group present in all alcohols.</div>
+<div class="qa"><div class="ans-label">Model Answer</div><p>The hydroxyl group (–OH).</p></div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">2 MARKS</span></div>
+<div class="qq">Explain why ethene decolourises bromine water but ethane does not.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1]</strong> Ethene contains a C=C double bond — it is unsaturated. The double bond can open up and bromine atoms add across it (addition reaction), forming a colourless dibromo compound → bromine water is decolourised.</p>
+<p><strong>[2]</strong> Ethane contains only C–C single bonds — it is saturated and cannot undergo addition reactions. It does not react with bromine water under normal conditions → no decolourisation.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">3 MARKS</span></div>
+<div class="qq">The combustion of methane: CH₄ + 2O₂ → CO₂ + 2H₂O. Using bond energies (C–H = 412, O=O = 496, C=O = 743, O–H = 463 kJ/mol), calculate the enthalpy change ΔH and state whether the reaction is exothermic or endothermic.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — bonds broken]</strong> Break: 4 × C–H = 4 × 412 = 1648 kJ. Break: 2 × O=O = 2 × 496 = 992 kJ. Total energy input = 1648 + 992 = 2640 kJ.</p>
+<p><strong>[2 — bonds formed]</strong> Form: 2 × C=O (in CO₂) = 2 × 743 = 1486 kJ. Form: 4 × O–H (in 2H₂O) = 4 × 463 = 1852 kJ. Total energy released = 1486 + 1852 = 3338 kJ.</p>
+<p><strong>[3 — ΔH and conclusion]</strong> ΔH = 2640 − 3338 = −698 kJ/mol. ΔH is negative → the reaction is exothermic — more energy is released forming new bonds than is needed to break old bonds.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">5 MARKS</span></div>
+<div class="qq">Discuss and evaluate the environmental and social implications of using ethanol from fermentation as a transport fuel, compared to petrol from crude oil. [5]</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — CO₂ argument for biofuel]</strong> Ethanol from fermentation is considered carbon-neutral in theory — the CO₂ released when it burns equals the CO₂ absorbed by the crop during photosynthesis, so there is no net addition of CO₂ to the atmosphere. Petrol releases CO₂ from carbon locked away for millions of years, increasing atmospheric CO₂ → contributing to the enhanced greenhouse effect and global warming.</p>
+<p><strong>[2 — counter-argument / limitation of biofuel]</strong> However, the production of bioethanol still requires energy (for farming machinery, fertiliser production, distillation) — often from fossil fuels. This makes it not truly carbon-neutral in practice.</p>
+<p><strong>[3 — land use / food security]</strong> Growing energy crops (e.g. sugar cane, maize) requires large areas of agricultural land. This competes with food production → could raise food prices and threaten food security, particularly in developing countries.</p>
+<p><strong>[4 — energy density / practicality]</strong> Ethanol has a lower energy density than petrol (releases less energy per litre burned) → vehicles need larger fuel tanks or more frequent refuelling to travel the same distance, reducing efficiency.</p>
+<p><strong>[5 — overall evaluation]</strong> Biofuels offer clear advantages in reducing fossil fuel dependence and in theory lowering net CO₂ emissions, but they are not a perfect solution. A combination of energy sources (including renewables for electricity) alongside improved fuel efficiency is likely more effective than biofuels alone.</p>
+</div></div>
+
+</div></div>
+</div>
+
+<!-- ===== UNIT 6 ===== -->
+<div class="unit" id="u5">
+<div class="utag">Unit 6 · MYP 2</div>
+<h2 class="utitle">From Acids to Electrons</h2>
+<p class="udesc">Acids &amp; bases · pH · Salts · Redox · Electrolysis · Atmosphere · Climate</p>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Acids, Bases &amp; pH</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Acid</div><div class="dd">A substance that <strong>donates protons (H⁺ ions)</strong> when dissolved in water (Brønsted-Lowry definition). Produces H⁺(aq) ions in solution. Examples: HCl, H₂SO₄, HNO₃, CH₃COOH.</div></div>
+<div class="def"><div class="dt">Base</div><div class="dd">A substance that <strong>accepts protons (H⁺ ions)</strong>. Metal oxides and metal hydroxides are bases. They react with acids to form a salt and water (neutralisation).</div></div>
+<div class="def"><div class="dt">Alkali</div><div class="dd">A <strong>soluble base</strong>. When dissolved in water, an alkali produces OH⁻ ions. Examples: NaOH, KOH, Ca(OH)₂, NH₃(aq).</div></div>
+<div class="def"><div class="dt">Neutralisation</div><div class="dd">The reaction between an acid and a base to form a <strong>salt and water</strong>. The H⁺ ions from the acid combine with the OH⁻ ions from the base: H⁺(aq) + OH⁻(aq) → H₂O(l). This ionic equation is the same for all acid-base neutralisations.</div></div>
+<div class="def"><div class="dt">pH scale</div><div class="dd">A measure of the concentration of H⁺ ions in solution. pH 0–6 = acidic; pH 7 = neutral; pH 8–14 = alkaline. The scale is <strong>logarithmic</strong> — each unit change represents a 10× change in H⁺ concentration. pH 3 is 10 times more acidic than pH 4, and 100 times more acidic than pH 5.</div></div>
+<div class="def"><div class="dt">Strong acid</div><div class="dd">An acid that <strong>completely ionises</strong> in water — all molecules donate their proton. HCl → H⁺ + Cl⁻ (one-way arrow — complete). Examples: HCl, H₂SO₄, HNO₃.</div></div>
+<div class="def"><div class="dt">Weak acid</div><div class="dd">An acid that <strong>only partially ionises</strong> in water — most molecules remain un-ionised. CH₃COOH ⇌ H⁺ + CH₃COO⁻ (equilibrium — incomplete). Lower H⁺ concentration → higher pH than a strong acid of the same concentration.</div></div>
+
+<h3>Why logarithmic scale matters in the exam</h3>
+<div class="note"><strong>pH is logarithmic — this is a common exam trap:</strong> If pH decreases by 1, the H⁺ concentration increases by 10×. If pH decreases by 2, the H⁺ concentration increases by 100×. So pH 1 has 10× more H⁺ than pH 2, and 1000× more H⁺ than pH 4. This is why even small pH changes in the ocean (ocean acidification) represent large changes in actual acidity.</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Reactions of Acids &amp; Salts</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Salt</div><div class="dd">An ionic compound formed when the H⁺ from an acid is <strong>replaced by a metal ion</strong> (or ammonium ion NH₄⁺). The name and formula of the salt depends on the acid used and the base/metal used.</div></div>
+<div class="def"><div class="dt">Titration</div><div class="dd">A technique used to determine the <strong>exact concentration of an acid or alkali</strong> by adding a measured volume of one solution from a burette to a known volume of the other (in a conical flask with indicator) until the reaction is exactly complete (the end point).</div></div>
+<div class="def"><div class="dt">End point</div><div class="dd">The point in a titration when the indicator changes colour permanently — indicating that the acid and alkali have exactly reacted in stoichiometric amounts. The number of moles of acid = the number of moles of alkali (adjusted for mole ratio).</div></div>
+<div class="def"><div class="dt">Precipitation reaction</div><div class="dd">A reaction where two soluble ionic solutions are mixed and an <strong>insoluble salt (precipitate) forms</strong>. The precipitate forms because the product is insoluble according to solubility rules.</div></div>
+
+<h3>All reactions of acids — formulas included</h3>
+<div class="formula">
+Acid + Metal → Salt + Hydrogen gas
+2HCl + Mg → MgCl₂ + H₂  (test H₂: squeaky pop with lit splint)
+
+Acid + Metal oxide → Salt + Water
+H₂SO₄ + CuO → CuSO₄ + H₂O
+
+Acid + Metal hydroxide → Salt + Water
+HCl + NaOH → NaCl + H₂O
+
+Acid + Metal carbonate → Salt + Water + Carbon dioxide
+2HCl + CaCO₃ → CaCl₂ + H₂O + CO₂  (test CO₂: limewater turns cloudy)
+
+Acid + Ammonia → Ammonium salt
+HCl + NH₃ → NH₄Cl
+</div>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr b"><strong>Crit B:</strong> Design a titration — identify IV (volume of acid added), DV (colour change of indicator), CVs (volume of alkali in flask, same indicator, same temperature). Justify choice of indicator (phenolphthalein for strong base/weak acid; methyl orange for strong acid/weak base).</div>
+<div class="cr c"><strong>Crit C:</strong> Process titration data — discard any non-concordant results (differing by more than 0.1 cm³). Average the concordant results. Use n = cV to calculate moles and then concentration.</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Redox Reactions</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Oxidation</div><div class="dd"><strong>Loss of electrons</strong> (OIL — Oxidation Is Loss). Alternatively: gain of oxygen, or loss of hydrogen. Oxidation state increases when a substance is oxidised.</div></div>
+<div class="def"><div class="dt">Reduction</div><div class="dd"><strong>Gain of electrons</strong> (RIG — Reduction Is Gain). Alternatively: loss of oxygen, or gain of hydrogen. Oxidation state decreases when a substance is reduced.</div></div>
+<div class="def"><div class="dt">Redox reaction</div><div class="dd">A reaction in which <strong>both oxidation and reduction occur simultaneously</strong>. One substance loses electrons (is oxidised) and another gains those same electrons (is reduced). Electrons are transferred between species.</div></div>
+<div class="def"><div class="dt">Oxidising agent</div><div class="dd">The substance that <strong>causes another substance to be oxidised</strong> by accepting electrons from it. The oxidising agent itself is reduced in the process.</div></div>
+<div class="def"><div class="dt">Reducing agent</div><div class="dd">The substance that <strong>causes another substance to be reduced</strong> by donating electrons to it. The reducing agent itself is oxidised in the process.</div></div>
+<div class="def"><div class="dt">Oxidation state</div><div class="dd">A number assigned to an atom representing its <strong>degree of oxidation</strong>. Key rules: uncombined element = 0; oxygen in compounds = −2; hydrogen in compounds = +1; ions = charge; sum in a neutral compound = 0.</div></div>
+
+<h3>The key confusion — oxidising agent gets REDUCED</h3>
+<div class="note red"><strong>Always confuses students:</strong> The oxidising agent CAUSES oxidation in something else → but it itself GAINS electrons → so it itself is REDUCED. The reducing agent CAUSES reduction in something else → but it itself LOSES electrons → so it itself is OXIDISED. Remember: "the agent does the opposite of its name."</div>
+
+<div class="formula">
+Example: Zn + Cu²⁺ → Zn²⁺ + Cu
+
+Zn: oxidation state 0 → +2 (INCREASES) → Zn is OXIDISED → Zn is the REDUCING AGENT
+Cu²⁺: oxidation state +2 → 0 (DECREASES) → Cu²⁺ is REDUCED → Cu²⁺/CuSO₄ is the OXIDISING AGENT
+
+Half equations:
+Oxidation: Zn → Zn²⁺ + 2e⁻
+Reduction: Cu²⁺ + 2e⁻ → Cu
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Electrolysis</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Electrolysis</div><div class="dd">The <strong>decomposition of an ionic compound</strong> using electrical energy. Requires the compound to be molten or dissolved in water so that ions are free to move. Used to extract reactive metals and to produce important chemicals.</div></div>
+<div class="def"><div class="dt">Electrolyte</div><div class="dd">The <strong>ionic compound being electrolysed</strong>. It conducts electricity in the molten or aqueous state by the movement of ions.</div></div>
+<div class="def"><div class="dt">Cathode</div><div class="dd">The <strong>negative electrode</strong> in electrolysis. Cations (positive ions) are attracted to it and gain electrons here. <strong>Reduction</strong> occurs at the cathode: cation + e⁻ → product.</div></div>
+<div class="def"><div class="dt">Anode</div><div class="dd">The <strong>positive electrode</strong> in electrolysis. Anions (negative ions) are attracted to it and lose electrons here. <strong>Oxidation</strong> occurs at the anode: anion → product + e⁻.</div></div>
+<div class="def"><div class="dt">Discharge of ions</div><div class="dd">When an ion arrives at an electrode and <strong>gains or loses electrons to become a neutral atom or molecule</strong>. If multiple ions are present, the one that is most easily oxidised/reduced is preferentially discharged.</div></div>
+<div class="def"><div class="dt">Electroplating</div><div class="dd">Using electrolysis to <strong>coat an object with a thin layer of metal</strong>. The object is the cathode (metal ions are deposited onto it). The plating metal is the anode (it dissolves to replenish the solution). The electrolyte is a solution of the plating metal's salt.</div></div>
+
+<h3>What happens at each electrode — key examples</h3>
+<table>
+<tr><th>Electrolyte</th><th>At cathode (−) — reduction</th><th>At anode (+) — oxidation</th></tr>
+<tr><td>Molten NaCl</td><td>Na⁺ + e⁻ → Na (sodium metal)</td><td>2Cl⁻ → Cl₂ + 2e⁻ (chlorine gas)</td></tr>
+<tr><td>Aqueous NaCl (brine)</td><td>2H⁺ + 2e⁻ → H₂ (hydrogen gas) — H⁺ discharged in preference to Na⁺ (Na is more reactive)</td><td>2Cl⁻ → Cl₂ + 2e⁻ (chlorine gas). NaOH left in solution.</td></tr>
+<tr><td>Aqueous CuSO₄ (inert electrodes)</td><td>Cu²⁺ + 2e⁻ → Cu (copper deposited)</td><td>2H₂O → O₂ + 4H⁺ + 4e⁻ (oxygen gas)</td></tr>
+<tr><td>Dilute H₂SO₄</td><td>2H⁺ + 2e⁻ → H₂ (hydrogen)</td><td>2H₂O → O₂ + 4H⁺ + 4e⁻ (oxygen). Volume ratio H₂:O₂ = 2:1</td></tr>
+</table>
+
+<div class="note"><strong>Selection rule for cathode:</strong> The less reactive metal ion is discharged in preference over a more reactive one. H⁺ is discharged in preference over Na⁺, K⁺, Ca²⁺, Mg²⁺, Al³⁺ (all more reactive than hydrogen). Cu²⁺, Ag⁺, and other less-reactive metal ions ARE discharged at the cathode.</div>
+<div class="note"><strong>Selection rule for anode:</strong> Halide ions (Cl⁻, Br⁻, I⁻) are preferentially discharged over OH⁻/water if they are present in high concentration. If no halide ions present, oxygen is produced from water at the anode.</div>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr d"><strong>Crit D:</strong> Evaluate environmental impact of aluminium extraction by electrolysis — it requires enormous amounts of electricity (mostly from fossil fuels → large carbon footprint). Recycling aluminium uses only about 5% of the energy of primary extraction → much more sustainable. Discuss the economic trade-off between primary extraction (high energy cost) and recycling (collection, sorting infrastructure cost).</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Definitions — Atmosphere, Greenhouse Effect &amp; Ozone</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+<div class="def"><div class="dt">Greenhouse effect</div><div class="dd">The <strong>natural warming of Earth's surface</strong> by certain gases in the atmosphere that absorb outgoing infrared (heat) radiation and re-emit it back toward Earth. Without it, Earth's average temperature would be −18°C instead of +15°C.</div></div>
+<div class="def"><div class="dt">Enhanced greenhouse effect</div><div class="dd">The <strong>additional warming caused by human activities</strong> increasing the concentrations of greenhouse gases (CO₂, CH₄, N₂O) beyond natural levels → trapping more infrared radiation → global warming.</div></div>
+<div class="def"><div class="dt">Greenhouse gas</div><div class="dd">A gas that absorbs infrared radiation. Main ones: CO₂ (from fossil fuel combustion, deforestation), CH₄ (from livestock, landfill, rice paddies), N₂O (from fertilisers), water vapour (natural), CFCs (industrial — now banned).</div></div>
+<div class="def"><div class="dt">Global warming</div><div class="dd">The <strong>increase in Earth's average surface temperature</strong> over recent decades, attributed mainly to the enhanced greenhouse effect. Consequences: rising sea levels, more extreme weather, ecosystem disruption, ice cap melting, ocean acidification.</div></div>
+<div class="def"><div class="dt">Ozone layer</div><div class="dd">A layer of ozone (O₃) in the stratosphere (~15–35 km altitude) that <strong>absorbs most of the harmful UV-B and UV-C radiation</strong> from the sun. Without it, increased UV radiation would cause skin cancer, cataracts, and damage to ecosystems.</div></div>
+<div class="def"><div class="dt">Ozone depletion</div><div class="dd">The thinning of the ozone layer caused by <strong>CFCs (chlorofluorocarbons)</strong>. In the stratosphere, UV breaks CFCs apart, releasing Cl• free radicals that catalytically destroy ozone: Cl• + O₃ → ClO• + O₂, then ClO• + O• → Cl• + O₂. One Cl• atom can destroy thousands of O₃ molecules.</div></div>
+<div class="def"><div class="dt">Ocean acidification</div><div class="dd">The decrease in ocean pH caused by <strong>CO₂ dissolving in seawater</strong> to form carbonic acid (H₂CO₃), which then partially ionises, increasing H⁺ concentration. CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻. This dissolves coral and shell material (CaCO₃) and disrupts marine food chains.</div></div>
+<div class="def"><div class="dt">Acid rain</div><div class="dd">Rain with a lower pH than normal (~5.6), caused by <strong>SO₂ and NOₓ</strong> dissolving in rainwater to form sulfurous/sulfuric acid and nitric acid. SO₂ comes from burning fossil fuels containing sulfur. NOₓ comes from car engines and power stations (N₂ reacts with O₂ at high temperatures).</div></div>
+
+<h3>Scientific mechanism — greenhouse effect step by step</h3>
+<div class="note"><strong>Full mechanism:</strong>
+(1) Short-wave visible light from the sun passes through the atmosphere (greenhouse gases do not absorb it).
+(2) Earth's surface absorbs this radiation and warms up.
+(3) Earth re-emits this energy as long-wave infrared (heat) radiation.
+(4) Greenhouse gas molecules absorb this outgoing infrared radiation — their bonds vibrate and energy is absorbed.
+(5) The molecules then re-emit infrared in all directions — including back toward Earth.
+(6) This traps heat in the lower atmosphere, warming the surface beyond what solar input alone would cause.
+(7) More greenhouse gases = more infrared absorbed and re-emitted back = more warming.</div>
+
+<h3>Scientific mechanism — why CFCs are uniquely destructive to ozone</h3>
+<div class="note red"><strong>Why it's a chain reaction (catalytic):</strong> Chlorine free radicals (Cl•) are not consumed — they are regenerated at the end of each cycle. One Cl• atom can destroy thousands of ozone molecules before it is finally removed from the system. This is why even small amounts of CFCs released into the atmosphere cause disproportionately large ozone depletion.</div>
+
+<h3>Gas testing — summary table</h3>
+<table>
+<tr><th>Gas</th><th>Test</th><th>Positive result</th></tr>
+<tr><td>O₂</td><td>Glowing splint inserted into the gas</td><td>Splint relights</td></tr>
+<tr><td>H₂</td><td>Lit splint near mouth of tube</td><td>Squeaky pop</td></tr>
+<tr><td>CO₂</td><td>Bubble through limewater [Ca(OH)₂]</td><td>Turns milky/cloudy (CaCO₃ precipitate)</td></tr>
+<tr><td>Cl₂</td><td>Damp blue litmus paper in gas</td><td>Turns red, then bleaches white</td></tr>
+<tr><td>NH₃</td><td>Damp red litmus paper in gas</td><td>Turns blue (NH₃ is alkaline)</td></tr>
+<tr><td>SO₂</td><td>Acidified potassium dichromate solution</td><td>Orange → green (SO₂ is a reducing agent)</td></tr>
+<tr><td>H₂O vapour</td><td>White anhydrous cobalt chloride paper</td><td>Turns pink</td></tr>
+</table>
+<div class="crits"><p>Criteria connections</p>
+<div class="cr d"><strong>Crit D:</strong> "Evaluate the effectiveness of the Montreal Protocol in addressing ozone depletion compared to efforts to address climate change." Montreal Protocol (1987) successfully phased out CFCs — ozone layer is slowly recovering (expected full recovery ~2060–2080). Climate change agreements (Kyoto, Paris) have been less effective — CO₂ emissions continue to rise globally. Discuss: ozone had a clear chemical solution (replace one class of chemicals), whereas climate change requires restructuring the entire global energy system.</div>
+</div>
+</div></div>
+
+<div class="section">
+<div class="shead" onclick="tog(this)"><span class="stitle">Exam Questions — Unit 6</span><span class="sarrow">▼</span></div>
+<div class="sbody open">
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">1 MARK</span></div>
+<div class="qq">State what is meant by an oxidising agent.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p>A substance that accepts electrons from another substance (causing the other substance to be oxidised), while being reduced itself.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">2 MARKS</span></div>
+<div class="qq">Explain why the electrolysis of molten sodium chloride produces different products at each electrode.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — cathode]</strong> At the cathode (negative electrode), Na⁺ ions are attracted and gain electrons: Na⁺ + e⁻ → Na. Reduction occurs, producing sodium metal.</p>
+<p><strong>[2 — anode]</strong> At the anode (positive electrode), Cl⁻ ions are attracted and lose electrons: 2Cl⁻ → Cl₂ + 2e⁻. Oxidation occurs, producing chlorine gas.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">3 MARKS</span></div>
+<div class="qq">Explain the mechanism by which increased CO₂ emissions are causing ocean acidification, and state one consequence for marine organisms.</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — mechanism]</strong> CO₂ from burning fossil fuels dissolves in seawater to form carbonic acid: CO₂ + H₂O → H₂CO₃. Carbonic acid partially ionises, releasing H⁺ ions: H₂CO₃ → H⁺ + HCO₃⁻. This increases the concentration of H⁺ ions → the pH of the ocean decreases (becomes more acidic).</p>
+<p><strong>[2 — logarithmic scale importance]</strong> Because pH is a logarithmic scale, even a small numerical decrease represents a large increase in actual acidity — the current drop of ~0.1 pH units since industrialisation represents approximately a 26% increase in H⁺ concentration.</p>
+<p><strong>[3 — consequence]</strong> Organisms such as corals and shellfish build shells and skeletons from calcium carbonate (CaCO₃). In more acidic conditions, CaCO₃ dissolves: CaCO₃ + CO₂ + H₂O → Ca²⁺ + 2HCO₃⁻. This prevents shell formation and causes existing shells/coral to dissolve → coral reef decline and collapse of marine food chains.</p>
+</div></div>
+
+<div class="qbox">
+<div class="qtop"><span class="qmark">5 MARKS</span></div>
+<div class="qq">Discuss and evaluate the scientific evidence for the enhanced greenhouse effect and the consequences for the environment and society. In your answer, suggest one way individuals and one way governments could reduce the impact. [5]</div>
+<div class="qa"><div class="ans-label">Model Answer</div>
+<p><strong>[1 — mechanism]</strong> The enhanced greenhouse effect occurs because human activities — primarily burning fossil fuels and deforestation — have increased atmospheric CO₂ from ~280 ppm pre-industrialisation to over 420 ppm today. CO₂ and other greenhouse gases (CH₄, N₂O) absorb outgoing infrared radiation from Earth's surface and re-emit it back, trapping more heat than natural levels would and raising global average temperatures.</p>
+<p><strong>[2 — evidence]</strong> Scientific evidence includes: rising global average temperatures (NASA records show ~1.1°C rise since 1880), melting polar ice caps and glaciers, rising sea levels, and shifts in species ranges. The IPCC reports that it is "unequivocal" that human influence has warmed the climate.</p>
+<p><strong>[3 — environmental consequences]</strong> Consequences include: rising sea levels threatening coastal cities and island nations, more intense hurricanes and droughts, coral reef bleaching from warming and acidification, and disruption of ecosystems as species cannot adapt fast enough to the pace of change.</p>
+<p><strong>[4 — individual action]</strong> Individuals can reduce their carbon footprint by using public transport or electric vehicles instead of petrol cars, reducing meat consumption (livestock produce significant CH₄), and lowering home energy use (switching to renewables or improving insulation).</p>
+<p><strong>[5 — government action + evaluation]</strong> Governments can impose carbon taxes (making fossil fuel use economically costly, incentivising alternatives), fund renewable energy infrastructure, and set mandatory emissions targets (as in the Paris Agreement, 2015 — aiming to limit warming to 1.5–2°C). However, effectiveness depends on international cooperation and enforcement — countries with developing economies argue they should not be limited in the same way as industrialised nations that caused most historical emissions, creating political barriers to action.</p>
+</div></div>
+
+</div></div>
+</div>
+
+</div>
+</div>
+
+<script>
+function show(i){
+  document.querySelectorAll('.unit').forEach((u,j)=>u.classList.toggle('on',i===j));
+  document.querySelectorAll('.nav-i').forEach((n,j)=>n.classList.toggle('on',i===j));
+  window.scrollTo(0,0);
+}
+function tog(h){
+  const b=h.nextElementSibling;
+  const a=h.querySelector('.sarrow');
+  const o=b.classList.toggle('open');
+  a.classList.toggle('open',o);
+}
+</script>
+</body>
+</html>
